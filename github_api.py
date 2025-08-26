@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-GitHub API for Bytelyst Organization
-This is an example Python API that fetches GitHub data for the Bytelyst organization.
+GitHub API
+This is a Python API that fetches GitHub data for any organization.
 You can integrate this with your existing Python API infrastructure.
 """
 
@@ -21,7 +21,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Initialize FastAPI app
-app = FastAPI(title="Bytelyst GitHub API", version="1.0.0")
+app = FastAPI(title="GitHub API", version="1.0.0")
 
 # Add CORS middleware
 app.add_middleware(
@@ -38,12 +38,12 @@ security = HTTPBearer()
 # Configuration
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 GITHUB_API_BASE = "https://api.github.com"
-ORGANIZATION = "Bytelyst"  # Hardcoded organization as required
+ORGANIZATION = "github"  # Default organization
 
-# Hardcoded team structure for Bytelyst organization
-ADMIN = "i-ayushh18"  # Hardcoded admin
-TEAM_LEADS = ["i-ayushh18", "saravanakumardb"]  # Hardcoded team leads
-INTERNS = ["i-ayushh18", "intern1", "intern2"]  # Hardcoded interns
+# Team structure configuration
+ADMIN = "admin"  # Admin user
+TEAM_LEADS = ["user1", "user2"]  # Team leads
+INTERNS = ["intern1", "intern2", "intern3"]  # Intern users
 
 # Pydantic models
 class GitHubCommit(BaseModel):
@@ -110,7 +110,7 @@ def get_github_headers():
     """Get headers for GitHub API requests"""
     headers = {
         "Accept": "application/vnd.github.v3+json",
-        "User-Agent": "Bytelyst-GitHub-API"
+        "User-Agent": "GitHub-API"
     }
     if GITHUB_TOKEN:
         headers["Authorization"] = f"token {GITHUB_TOKEN}"
@@ -177,7 +177,7 @@ def get_team_members() -> List[str]:
     return [ADMIN] + TEAM_LEADS + INTERNS
 
 @app.get("/api/github-data")
-async def get_github_data(org: str = "saravanakumardb", repo: str = "vv-devops-api-ayush-intern-skills-app"):
+async def get_github_data(org: str = "microsoft", repo: str = "vscode"):
     """Get GitHub data for any organization and repository"""
     if not GITHUB_TOKEN:
         return {"error": "GitHub token not configured"}
