@@ -22,10 +22,10 @@ This project is ready to deploy on Vercel. See `vercel.json` for configuration.
 ### 2. Get GitHub Data (for an org and repo)
 - **GET** `/api/github-data`
 - **Query Parameters:**
-  - `org` (optional, default: `saravanakumardb`)
-  - `repo` (optional, default: `vv-devops-api-ayush-intern-skills-app`)
+  - `org` (optional, default: `microsoft`)
+  - `repo` (optional, default: `vscode`)
 - **Example:**
-  - `https://my-fastapi-github-api.vercel.app/api/github-data?org=saravanakumardb&repo=vv-devops-api-ayush-intern-skills-app`
+  - `https://my-fastapi-github-api.vercel.app/api/github-data?org=microsoft&repo=vscode`
 
 ---
 
@@ -57,5 +57,3 @@ This project is ready to deploy on Vercel. See `vercel.json` for configuration.
 ## Environment Variables
 - `GITHUB_TOKEN` (optional, but recommended for higher rate limits)
 
-## License
-MIT 
